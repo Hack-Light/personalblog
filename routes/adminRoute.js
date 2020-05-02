@@ -4,126 +4,6 @@ const debug = require("debug")("app:adminRouter");
 
 const Post = require("./../models/blog");
 
-const posts = [
-  {
-    title: "Science has not yet mastered prophecy",
-    description:
-      " We predict too much for the next year and yet far too little for the next ten.",
-    author: "Onoh Somtochukwu",
-    date: "August 24, 2019",
-  },
-  {
-    title: "Science has not yet mastered prophecy",
-    description:
-      " We predict too much for the next year and yet far too little for the next ten.",
-    author: "Onoh Somtochukwu",
-    date: "August 24, 2019",
-  },
-  {
-    title: "Science has not yet mastered prophecy",
-    description:
-      " We predict too much for the next year and yet far too little for the next ten.",
-    author: "Onoh Somtochukwu",
-    date: "August 24, 2019",
-  },
-  {
-    title: "Science has not yet mastered prophecy",
-    description:
-      " We predict too much for the next year and yet far too little for the next ten.",
-    author: "Onoh Somtochukwu",
-    date: "August 24, 2019",
-  },
-  {
-    title: "Science has not yet mastered prophecy",
-    description:
-      " We predict too much for the next year and yet far too little for the next ten.",
-    author: "Onoh Somtochukwu",
-    date: "August 24, 2019",
-  },
-  {
-    title: "Failure is not an option",
-    description:
-      " Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-    author: "Onoh Somtochukwu",
-    date: "July 8, 2019",
-  },
-  {
-    title: "Failure is not an option",
-    description:
-      " Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-    author: "Onoh Somtochukwu",
-    date: "July 8, 2019",
-  },
-  {
-    title: "Failure is not an option",
-    description:
-      " Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-    author: "Onoh Somtochukwu",
-    date: "July 8, 2019",
-  },
-  {
-    title: "Failure is not an option",
-    description:
-      " Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-    author: "Onoh Somtochukwu",
-    date: "July 8, 2019",
-  },
-  {
-    title: "Failure is not an option",
-    description:
-      " Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-    author: "Onoh Somtochukwu",
-    date: "July 8, 2019",
-  },
-  {
-    title:
-      "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
-    description: "",
-    author: "Onoh Somtochukwu",
-    date: "September 18, 2019",
-  },
-  {
-    title:
-      "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
-    description: "",
-    author: "Onoh Somtochukwu",
-    date: "September 18, 2019",
-  },
-  {
-    title:
-      "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
-    description: "",
-    author: "Onoh Somtochukwu",
-    date: "September 18, 2019",
-  },
-  {
-    title:
-      "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
-    description: "",
-    author: "Onoh Somtochukwu",
-    date: "September 18, 2019",
-  },
-  {
-    title:
-      "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.",
-    description: "",
-    author: "Onoh Somtochukwu",
-    date: "September 18, 2019",
-  },
-  {
-    title: "Man must explore, and this is exploration at its greatest",
-    description: " Problems look mighty small from 150 miles up",
-    author: "Onoh Somtochukwu",
-    date: "September 24, 2019",
-  },
-  {
-    title: "Man must explore, and this is exploration at its greatest",
-    description: " Problems look mighty small from 150 miles up",
-    author: "Onoh Somtochukwu",
-    date: "September 24, 2019",
-  },
-];
-
 router.get("/", async function (req, res) {
   let posts = await Post.find().sort({ date: 1 });
   res.render("AdminPage", {
@@ -155,7 +35,13 @@ router.post("/", async function (req, res) {
   }
 });
 
-router.delete("/:id", function (req, res) {
-  res.redirect("/admin/");
+router.delete("/:id", async function (req, res) {
+  Post.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect("/admin");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 module.exports = router;

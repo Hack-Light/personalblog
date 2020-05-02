@@ -11,4 +11,9 @@ router.get("/:id", async function (req, res) {
   });
 });
 
+router.delete("/:id", async function (req, res) {
+  await Post.findByIdAndDelete(req.params.id);
+  res.redirect("/admin/");
+});
+
 module.exports = router;
