@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const debug = require("debug")("app:adminRouter");
+
+const Post = require("./../models/blog");
 
 const posts = [
   {
@@ -134,8 +137,21 @@ router.get("/new", function (req, res) {
   });
 });
 
-router.post("/new", function (req, res) {
-  res.redirect("/posts/:id");
+router.post("/", async function (req, res) {
+  let post = new Post({
+    title: req.body.title,
+    description: req.body.description,
+    author: req.body.author,
+    markdown: req.body.article,
+  });
+
+  try {
+    post = await post.save();
+    res.redirect(`/posts/${post.id}`);
+  } catch (err) {
+    debug(err);
+    res.render("newPost", { post: post });
+  }
 });
 
 router.delete("/:id", function (req, res) {

@@ -25,10 +25,10 @@ const postSchema = new mongoose.Schema({
     default: Date.now,
   },
 
-  postImage: {
-    type: String,
-    required: true,
-  },
+  // postImage: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
-module.exports = mongoose.model("posts", postSchema);
+module.exports = mongoose.model("Posts", postSchema, "posts");
