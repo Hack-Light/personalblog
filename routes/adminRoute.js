@@ -124,7 +124,8 @@ const posts = [
   },
 ];
 
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
+  let posts = await Post.find().sort({ date: 1 });
   res.render("AdminPage", {
     title: "Admin Page",
     posts,
