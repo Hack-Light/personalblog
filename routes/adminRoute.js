@@ -5,7 +5,7 @@ const debug = require("debug")("app:adminRouter");
 const Post = require("./../models/blog");
 
 router.get("/", async function (req, res) {
-  let posts = await Post.find().sort({ date: 1 });
+  let posts = await Post.find().sort({ date: -1 });
   res.render("AdminPage", {
     title: "Admin Page",
     posts,
