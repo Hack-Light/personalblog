@@ -16,6 +16,7 @@
     <input
       type="text"
       class="form-control"
+      value="<%=post.title%>"
       placeholder="Title"
       name="title"
       id="title"
@@ -31,6 +32,7 @@
     <input
       type="text"
       name="description"
+      value="<%=post.description%>"
       class="form-control"
       placeholder="Description"
       id="description"
@@ -44,6 +46,7 @@
     <input
       type="text"
       class="form-control"
+      value="<%=post.author%>"
       name="author"
       placeholder="Author"
       id="author"
@@ -64,13 +67,15 @@
       id="article"
       required
       data-validation-required-message="Please enter the post content"
-    ></textarea>
+    >
+<%=post.markdown%></textarea
+    >
     <p class="help-block text-danger"></p>
   </div>
 </div>
 <br />
 <div id="success"></div>
-<a href="/" class="btn btn-secondary">Cancel</a>
+<a href="/admin" class="btn btn-secondary">Cancel</a>
 <button type="submit" class="btn btn-primary">
   Post
 </button>

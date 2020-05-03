@@ -64,9 +64,14 @@
                 <%= posts[index].title %>
               </p>
             </a>
+
+            <a href="/admin/edit/<%=posts[index].id%>" class="btn btn-primary"
+              >Edit</a
+            >
             <form
               action="/admin/<%=posts[index].id%>?_method=DELETE"
               method="POST"
+              class="d-inline"
             >
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>

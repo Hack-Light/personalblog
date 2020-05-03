@@ -15,6 +15,7 @@ router.get("/", async function (req, res) {
 router.get("/new", function (req, res) {
   res.render("newPost", {
     title: "New Posts",
+    post: new Post(),
   });
 });
 
