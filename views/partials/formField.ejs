@@ -32,7 +32,7 @@
     <input
       type="text"
       name="description"
-      value="<%=post.description%>"
+      value="<%= post.description %>"
       class="form-control"
       placeholder="Description"
       id="description"
@@ -46,7 +46,7 @@
     <input
       type="text"
       class="form-control"
-      value="<%=post.author%>"
+      value="<%= post.author %>"
       name="author"
       placeholder="Author"
       id="author"
@@ -68,7 +68,7 @@
       required
       data-validation-required-message="Please enter the post content"
     >
-<%=post.markdown%></textarea
+<%= post.markdown %></textarea
     >
     <p class="help-block text-danger"></p>
   </div>
