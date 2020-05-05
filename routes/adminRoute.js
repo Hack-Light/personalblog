@@ -72,7 +72,7 @@ function savePostandRedirect(file) {
     try {
       post = await post.save();
 
-      res.redirect(`/posts/${post.id}`);
+      res.redirect(`/posts/${post.slug}`);
     } catch (err) {
       debug(err);
       res.render(`${file}`, { post: post });

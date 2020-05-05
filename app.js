@@ -16,6 +16,7 @@ const adminRouter = require("./routes/adminRoute");
 mongoose.connect("mongodb://localhost:27017/portfolio", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useCreateIndex: true,
 });
 
 // view engine setup
