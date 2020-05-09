@@ -1,8 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const debug = require("debug")("app:adminRouter");
+const { isAuthenticated } = require("./authRoute");
 
 const Post = require("./../models/blog");
+
+
+router.use(isAuthenticated)
+
 
 router.get("/", async function (req, res) {
   let posts = await Post.find().sort({ date: -1 });

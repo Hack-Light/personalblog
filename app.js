@@ -1,24 +1,38 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const session = require("express-session");
 const methodOverride = require("method-override");
+const flash = require("express-flash")
+const passport = require("passport")
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
 
-const indexRouter = require("./routes/indexRoute");
-const singlePostRouter = require("./routes/singlePostRoute");
-const adminRouter = require("./routes/adminRoute");
-const authRouter = require("./routes/authRoute");
 
 mongoose.connect("mongodb://localhost:27017/portfolio", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+
+app.use(session({ secret: "secret", resave: false, saveUninitialized: false }))
+require("./config/passport.config")(app);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(methodOverride("_method"));
+app.use(flash())
+
+
+
+const indexRouter = require("./routes/indexRoute");
+const singlePostRouter = require("./routes/singlePostRoute");
+const adminRouter = require("./routes/adminRoute");
+const { authRouter } = require("./routes/authRoute");
+
+
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
