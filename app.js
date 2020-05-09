@@ -12,6 +12,7 @@ app.use(methodOverride("_method"));
 const indexRouter = require("./routes/indexRoute");
 const singlePostRouter = require("./routes/singlePostRoute");
 const adminRouter = require("./routes/adminRoute");
+const authRouter = require("./routes/authRoute");
 
 mongoose.connect("mongodb://localhost:27017/portfolio", {
   useUnifiedTopology: true,
@@ -31,6 +32,7 @@ app.use("/img", express.static(path.join(__dirname, "/public/images")));
 app.use("/", indexRouter);
 app.use("/posts", singlePostRouter);
 app.use("/admin", adminRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {
