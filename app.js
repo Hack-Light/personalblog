@@ -31,6 +31,7 @@ const singlePostRouter = require("./routes/singlePostRoute");
 const adminRouter = require("./routes/adminRoute");
 const { authRouter } = require("./routes/authRoute");
 const contactRouter = require("./routes/contact")
+const aboutRouter = require("./routes/about")
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -45,6 +46,8 @@ app.use("/", indexRouter);
 app.use("/posts", singlePostRouter);
 app.use("/admin", adminRouter);
 app.use("/auth", authRouter);
+app.use("/signup", contactRouter);
+app.use("/about", aboutRouter);
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Sign Up for News Letter</h1>
+              <h1>Sign Up for My News Letter</h1>
               <span class="subheading"
                 >Want to get my latest posts in your inbox?</span
               >
@@ -31,13 +31,51 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <p>
-            Get all my articles as they are uploaded directly to you email box.
-            All you have to do is Sign Up for my NewsLetter
+            To get all my articles as they are uploaded directly to you email
+            box. All you have to do is Sign up for my Newsletter
           </p>
           <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
 
           <form method="POST" action="/signup">
-            <%- include("partials/formField") %>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  name="name"
+                  id="name"
+                  required
+                  data-validation-required-message="Please enter your first name"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div
+                class="form-group col-xs-12 floating-label-form-group controls"
+              >
+                <label>E-mail</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="john@doe.com"
+                  id="email"
+                  required
+                  data-validation-required-message="Please enter a valid email address"
+                />
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br />
+            <div id="success"></div>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">
+              Sign Up
+            </button>
           </form>
         </div>
       </div>
