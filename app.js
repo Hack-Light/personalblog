@@ -1,38 +1,36 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const flash = require("express-flash")
-const passport = require("passport")
+const flash = require("express-flash");
+const passport = require("passport");
 
 const app = express();
 
-
-
-mongoose.connect("mongodb://localhost:27017/portfolio", {
+mongoose.connect(process.env.DATABASE_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
 
-app.use(session({ secret: "secret", resave: false, saveUninitialized: false }))
+app.use(session({ secret: "secret", resave: false, saveUninitialized: false }));
 require("./config/passport.config")(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride("_method"));
-app.use(flash())
-
-
+app.use(flash());
 
 const indexRouter = require("./routes/indexRoute");
 const singlePostRouter = require("./routes/singlePostRoute");
 const adminRouter = require("./routes/adminRoute");
 const { authRouter } = require("./routes/authRoute");
-
-
-
+const contactRouter = require("./routes/contact")
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
