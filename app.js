@@ -8,12 +8,12 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
-const passport = require("passport");
+
 
 const app = express();
 
 mongoose.connect(process.env.DATABASE_URL, {
-  useUnifiedTopology: true,
+
   useNewUrlParser: true,
   useCreateIndex: true,
 });
