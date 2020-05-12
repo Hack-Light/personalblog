@@ -13,7 +13,7 @@ const flash = require("express-flash");
 const app = express();
 
 mongoose.connect(process.env.DATABASE_URL, {
-
+  useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
