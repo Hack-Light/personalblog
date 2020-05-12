@@ -3,6 +3,9 @@ const router = express.Router();
 const Contacts = require("./../models/contacts");
 
 
+//just a comment
+
+
 router.get("/", function (req, res) {
     res.render("contact", {
         title: "Sign Up for NewsLetter - Onoh Somtochukwu"
