@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "set DEBUG=app, app:* & nodemon app.js"
+    "start": "set DEBUG=app, app:* & node app.js"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
