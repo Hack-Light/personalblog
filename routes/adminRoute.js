@@ -11,11 +11,17 @@ router.use(isAuthenticated)
 
 
 router.get("/", async function (req, res) {
-  let posts = await Post.find().sort({ date: -1 });
-  res.render("AdminPage", {
-    title: "Admin Page",
-    posts,
-  });
+
+  try {
+    let posts = await Post.find().sort({ date: -1 });
+    res.render("AdminPage", {
+      title: "Admin Page",
+      posts,
+    });
+  } catch (e) {
+
+  }
+
 });
 
 router.get("/new", function (req, res) {
@@ -44,7 +50,7 @@ router.put(
   savePostandRedirect("editPost")
 );
 
-router.delete("/:id", async function (req, res) {
+router.delete("/:id", function (req, res) {
   Post.findByIdAndDelete(req.params.id)
     .then(() => {
       res.redirect("/admin");
@@ -69,11 +75,16 @@ router.get("/edit/:id", async function (req, res) {
 
 
 router.get("/contacts", async function (req, res) {
-  let contacts = await Contact.find().sort({ date: -1 });
-  res.render("contactsAdmin", {
-    title: "My Contacts - Admin - Onoh Somtochukwu",
-    contacts,
-  });
+  try {
+    let contacts = await Contact.find().sort({ date: -1 });
+    res.render("contactsAdmin", {
+      title: "My Contacts - Admin - Onoh Somtochukwu",
+      contacts,
+    });
+  } catch (e) {
+
+  }
+
 });
 
 function savePostandRedirect(file) {
