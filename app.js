@@ -11,10 +11,14 @@ const flash = require("express-flash");
 
 const app = express();
 
-mongoose.connect(process.env.DATABASE_URL, {
+const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true
+};
+
+mongoose.connect(process.env.DATABASE_URL, options).catch(err => {
+  console.log(err);
 });
 
 app.use(session({ secret: "secret", resave: false, saveUninitialized: false }));
