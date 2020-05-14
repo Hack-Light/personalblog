@@ -7,13 +7,13 @@ router.get("/:slug", async function (req, res) {
   if (post == null) res.redirect("/");
   res.render("post", {
     title: "Individual Post",
-    post,
+    post
   });
 });
 
-router.delete("/:id", async function (req, res) {
-  await Post.findByIdAndDelete(req.params.id);
-  res.redirect("/admin/");
-});
+// router.delete("/:id", async function (req, res) {
+//   await Post.findByIdAndDelete(req.params.id);
+//   res.redirect("/admin/");
+// });
 
 module.exports = router;
