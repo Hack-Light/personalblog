@@ -17,12 +17,15 @@ const options = {
   useCreateIndex: true
 };
 
-mongoose.connect(process.env.DATABASE_URL, options).catch(err => {
-  console.log(err);
-});
+mongoose
+  .connect(process.env.DATABASE_URL, options)
+  .then(() => console.log("MongoDB Connected..."))
+  .catch(err => {
+    console.log(err);
+  });
 
 app.use(session({ secret: "secret", resave: false, saveUninitialized: false }));
-// require("./config/passport.config")(app);
+require("./config/passport.config")(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -31,8 +34,8 @@ app.use(flash());
 
 const indexRouter = require("./routes/indexRoute");
 const singlePostRouter = require("./routes/singlePostRoute");
-// const adminRouter = require("./routes/adminRoute");
-// const { authRouter } = require("./routes/authRoute");
+const adminRouter = require("./routes/adminRoute");
+const { authRouter } = require("./routes/authRoute");
 const contactRouter = require("./routes/contact");
 const aboutRouter = require("./routes/about");
 
@@ -47,8 +50,8 @@ app.use("/img", express.static(path.join(__dirname, "/public/images")));
 
 app.use("/", indexRouter);
 app.use("/posts", singlePostRouter);
-// app.use("/admin", adminRouter);
-// app.use("/auth", authRouter);
+app.use("/admin", adminRouter);
+app.use("/auth", authRouter);
 app.use("/signup", contactRouter);
 app.use("/about", aboutRouter);
 
