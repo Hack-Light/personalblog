@@ -32,7 +32,7 @@ router.post("/new", async function (req, res) {
 });
 
 router.get("/login", checkNotAuthentication, function (req, res) {
-  res.render("adminlogin", {
+  res.render("adminLogin", {
     title: "Admin Log In"
   });
 });
