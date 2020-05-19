@@ -6,22 +6,20 @@ const { isAuthenticated } = require("./authRoute");
 const Post = require("./../models/blog");
 const Contact = require("./../models/contacts");
 
-
-router.use(isAuthenticated)
-
+router.use(isAuthenticated);
 
 router.get("/", async function (req, res) {
   let posts = await Post.find().sort({ date: -1 });
   res.render("AdminPage", {
     title: "Admin Page",
-    posts,
+    posts
   });
 });
 
 router.get("/new", function (req, res) {
   res.render("newPost", {
     title: "New Posts",
-    post: new Post(),
+    post: new Post()
   });
 });
 
@@ -49,7 +47,7 @@ router.delete("/:id", async function (req, res) {
     .then(() => {
       res.redirect("/admin");
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
 });
@@ -59,20 +57,18 @@ router.get("/edit/:id", async function (req, res) {
   try {
     res.render("editPost", {
       title: "Edit Post - Onoh Somtochukwu",
-      post: post,
+      post: post
     });
   } catch (err) {
     console.log(err);
   }
 });
 
-
-
 router.get("/contacts", async function (req, res) {
   let contacts = await Contact.find().sort({ date: -1 });
   res.render("contactsAdmin", {
     title: "My Contacts - Admin - Onoh Somtochukwu",
-    contacts,
+    contacts
   });
 });
 
