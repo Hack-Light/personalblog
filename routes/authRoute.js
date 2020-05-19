@@ -6,15 +6,15 @@ const passport = require("passport");
 
 let count = 0;
 
-// checkAuthentication
-router.get("/new", async function (req, res) {
+//
+router.get("/new", checkAuthentication, async function (req, res) {
   res.render("newAdmin", {
     title: "Add Admin"
   });
 });
 
-// checkAuthentication,
-router.post("/new", async function (req, res) {
+//
+router.post("/new", checkAuthentication, async function (req, res) {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
