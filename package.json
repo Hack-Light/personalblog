@@ -11,7 +11,7 @@
   "dependencies": {
     "bcrypt": "^4.0.1",
     "debug": "~2.6.9",
-    "dompurify": "^2.0.8",
+    "dompurify": "^2.0.17",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-flash": "0.0.2",
